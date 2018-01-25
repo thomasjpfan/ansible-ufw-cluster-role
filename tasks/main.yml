@@ -1,0 +1,63 @@
+---
+
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present
+    cache_valid_time: "{{ ufw_apt_valid_item }}"
+  notify:
+    - Start ufw
+    - Enable ufw
+
+- name: Defined cluster ip
+  set_fact:
+    ufw_cluster_ip:
+      "{{ vars['ansible_' + ufw_network_interface]['ipv4']['address'] }}"
+
+- name: Config ports to cluster
+  ufw:
+    delete: "{{ item[0].delete | default(omit) }}"
+    direction: "{{ item[0].direction | default(omit) }}"
+    from_port: "{{ item[0].from_port | default(omit) }}"
+    insert: "{{ item[0].insert | default(omit) }}"
+    interface: "{{ item[0].interface | default(omit) }}"
+    log: "{{ item[0].log | default(omit) }}"
+    logging: "{{ item[0].logging | default(omit) }}"
+    name: "{{ item[0].name | default(omit) }}"
+    policy: "{{ item[0].policy | default(omit) }}"
+    port: "{{ item[0].port | default(omit) }}"
+    proto: "{{ item[0].proto | default(omit) }}"
+    rule: "{{ item[0].rule | default('allow') }}"
+    state: "{{ item[0].state | default(omit) }}"
+    to_ip: "{{ item[0].to_ip | default(omit) }}"
+    to_port: "{{ item[0].to_port | default(omit) }}"
+    from_ip: "{{ item[1] }}"
+  with_nested:
+    - "{{ ufw_cluster_rules }}"
+    - "{{ hostvars.values() | map(attribute='ufw_cluster_ip') | list }}"
+  notify:
+    - Start ufw
+    - Enable ufw
+
+- name: Config ports in general
+  ufw:
+    delete: "{{ item.delete | default(omit) }}"
+    direction: "{{ item.direction | default(omit) }}"
+    from_port: "{{ item.from_port | default(omit) }}"
+    insert: "{{ item.insert | default(omit) }}"
+    interface: "{{ item.interface | default(omit) }}"
+    log: "{{ item.log | default(omit) }}"
+    logging: "{{ item.logging | default(omit) }}"
+    name: "{{ item.name | default(omit) }}"
+    policy: "{{ item.policy | default(omit) }}"
+    port: "{{ item.port | default(omit) }}"
+    proto: "{{ item.proto | default(omit) }}"
+    rule: "{{ item.rule | default('allow') }}"
+    state: "{{ item.state | default(omit) }}"
+    to_ip: "{{ item.to_ip | default(omit) }}"
+    to_port: "{{ item.to_port | default(omit) }}"
+    from_ip: "{{ item.from_ip | default(omit) }}"
+  with_items: "{{ ufw_general_ports }}"
+  notify:
+    - Start ufw
+    - Enable ufw

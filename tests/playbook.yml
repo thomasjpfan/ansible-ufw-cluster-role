@@ -1,0 +1,22 @@
+---
+
+- hosts: cluster
+  vars:
+    - ufw_cluster_rules:
+      - { port: 8080, rule: allow }
+    - ufw_general_ports:
+      - { port: 22, rule: allow }
+  pre_tasks:
+    - name: Instal apt-cacher
+      blockinfile:
+        path: /etc/apt/apt.conf.d/01proxy
+        create: yes
+        block: |
+          Acquire::HTTP::Proxy "http://apt-cacher:3142";
+          Acquire::HTTPS::Proxy "false";
+      when: docker_use_local_cache
+  tasks:
+    - name: Run role
+      include_role:
+        name: role_to_test
+

@@ -1,0 +1,11 @@
+---
+
+- name: Start ufw
+  service:
+    name: ufw
+    state: started
+
+- name: Enable ufw
+  ufw:
+    state: enabled
+    logging: "{{ ufw_logging }}"

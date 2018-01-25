@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Thomas Fan
+  license: MIT
+  description: Configures UFW to allow port access between a cluster of hosts.
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  galaxy_tags:
+    - development
+    - packaging
+    - system

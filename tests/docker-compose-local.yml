@@ -1,0 +1,21 @@
+version: "3.2"
+
+services:
+  server1:
+    image: thomasjpfan/ubuntu-python-systemd:16.04-py3
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - ng
+  server2:
+    image: thomasjpfan/ubuntu-python-systemd:16.04-py2
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - ng
+
+networks:
+  ng:
+    external: true

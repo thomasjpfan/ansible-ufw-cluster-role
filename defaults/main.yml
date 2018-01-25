@@ -1,0 +1,15 @@
+---
+
+# Apt update time for installing ufw
+ufw_apt_valid_item: 86400
+
+# Network interface to allow ports through in cluster
+ufw_network_interface: "{{ ansible_default_ipv4['interface'] }}"
+
+# ufw logging
+ufw_logging: "off"
+
+# Configurations between hosts in cluster
+ufw_cluster_rules: [{ port: 8080, rule: allow }]
+# Configurations in general
+ufw_general_ports: [{ port: 22, rule: allow}]

@@ -1,0 +1,4 @@
+[cluster]
+
+tests_server1_1 ansible_connection=docker ansible_python_interpreter=/usr/bin/python3
+tests_server2_1 ansible_connection=docker ansible_python_interpreter=/usr/bin/python2
