@@ -2,6 +2,7 @@
 
 - hosts: cluster
   vars:
+    - docker_use_local_cache: false
     - ufw_cluster_rules:
       - { port: 8080, rule: allow }
     - ufw_general_ports:
