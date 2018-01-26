@@ -24,7 +24,7 @@ ufw_general_ports: [{ port: 22, rule: allow}]
 
 ## Testing
 
-This project uses [ansible-ubuntu-local-runner)](https://github.com/thomasjpfan/ansible-ubuntu-local-runner) to run tests in a docker container.
+This project uses [ansible-docker-runner](https://github.com/thomasjpfan/ansible-docker-runner) to run tests in a docker container.
 
 1. Start Container for testing:
 
