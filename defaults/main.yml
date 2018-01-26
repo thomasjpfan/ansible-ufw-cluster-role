@@ -1,7 +1,7 @@
 ---
 
 # Apt update time for installing ufw
-ufw_apt_valid_item: 86400
+ufw_apt_cache_valid_time: 3600
 
 # Network interface to allow ports through in cluster
 ufw_network_interface: "{{ ansible_default_ipv4['interface'] }}"

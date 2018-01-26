@@ -4,7 +4,7 @@
   apt:
     name: ufw
     state: present
-    cache_valid_time: "{{ ufw_apt_valid_item }}"
+    cache_valid_time: "{{ ufw_apt_cache_valid_time }}"
   notify:
     - Start ufw
     - Enable ufw
