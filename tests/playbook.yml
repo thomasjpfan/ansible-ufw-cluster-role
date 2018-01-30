@@ -2,7 +2,7 @@
 
 - hosts: cluster
   vars:
-    - docker_use_local_cache: false
+    - use_local_cache: false
     - ufw_cluster_rules:
       - { port: 8080, rule: allow }
     - ufw_general_ports:
@@ -15,7 +15,7 @@
         block: |
           Acquire::HTTP::Proxy "http://apt-cacher:3142";
           Acquire::HTTPS::Proxy "false";
-      when: docker_use_local_cache
+      when: use_local_cache
   tasks:
     - name: Run role
       include_role:

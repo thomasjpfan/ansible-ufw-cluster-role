@@ -27,7 +27,7 @@ cycle: setup_test test clean_up
 
 cli_local:
 	$(CLI_COMMAND) -ti \
-	-e ANSIBLE_PLAYBOOK_ARGS="-e docker_use_local_cache=true" \
+	-e ANSIBLE_PLAYBOOK_ARGS="-e use_local_cache=true" \
 	$(DOCKER_HUB_REPO):$(TAG) /bin/sh
 
 setup_test_local:
