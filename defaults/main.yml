@@ -10,6 +10,6 @@ ufw_network_interface: "{{ ansible_default_ipv4['interface'] }}"
 ufw_logging: "off"
 
 # Configurations between hosts in cluster
-ufw_cluster_rules: [{ port: 8080, rule: allow }]
+ufw_cluster_rules: []
 # Configurations in general
-ufw_general_ports: [{ port: 22, rule: allow}]
+ufw_general_ports: []
