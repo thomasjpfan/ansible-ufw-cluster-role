@@ -2,8 +2,7 @@
 
 TAG ?= docker-18.01.0-ce-py3-ansible-2.4.2.0-lint-3.4.20-testinfra-1.10.1
 CLI_COMMAND := docker run --rm -v $(PWD):/etc/ansible/roles/role_to_test \
-	--name runner -v /var/run/docker.sock:/var/run/docker.sock:ro \
-	-v $(PWD)/dep_roles:/root/.ansible/roles
+	--name runner -v /var/run/docker.sock:/var/run/docker.sock:ro
 DOCKER_HUB_REPO ?= thomasjpfan/ansible-docker-runner
 
 build:
